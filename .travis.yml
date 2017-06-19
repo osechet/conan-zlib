@@ -2,9 +2,7 @@ env:
    global:
      - CONAN_REFERENCE: "zlib/1.2.11"
      - CONAN_USERNAME: "conan"
-     - CONAN_LOGIN_USERNAME: "lasote"
-     - CONAN_CHANNEL: "testing"
-     - CONAN_UPLOAD: "https://api.bintray.com/conan/lasote/conan-repo"
+     - CONAN_CHANNEL: "stable"
      - CONAN_STABLE_BRANCH_PATTERN="release/*"
 
 linux: &linux
@@ -21,9 +19,13 @@ matrix:
    include:
 
       - <<: *linux
+        env: CONAN_GCC_VERSIONS=4.8 CONAN_DOCKER_IMAGE=lasote/conangcc48
+      - <<: *linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
       - <<: *linux
         env: CONAN_GCC_VERSIONS=5.4 CONAN_DOCKER_IMAGE=lasote/conangcc54
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6.2 CONAN_DOCKER_IMAGE=lasote/conangcc62
       - <<: *linux
         env: CONAN_GCC_VERSIONS=6.3 CONAN_DOCKER_IMAGE=lasote/conangcc63
       - <<: *linux
